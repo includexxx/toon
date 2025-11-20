@@ -1,0 +1,30 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Config files
+tsconfig.json
+.gitignore
+.cursorignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+*.test.ts
+*.spec.ts
+coverage/
+.nyc_output/
+
+# Development
+.env
+.env.local
+

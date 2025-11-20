@@ -1,0 +1,53 @@
+{
+  "name": "toon-package",
+  "version": "1.0.0",
+  "description": "Token-Oriented Object Notation - A compact, human-readable encoding of JSON for LLM prompts with 30-60% token savings",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "toon": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:run": "npm run build && node dist/test.js",
+    "prepublishOnly": "npm run build",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "toon",
+    "json",
+    "llm",
+    "token",
+    "encoding",
+    "serialization",
+    "compact",
+    "typescript",
+    "ai",
+    "prompt",
+    "efficient"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.5",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
