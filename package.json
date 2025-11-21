@@ -1,23 +1,27 @@
 {
-  "name": "toon-package",
+  "name": "@mhriyad/toon",
   "version": "1.0.0",
   "description": "Token-Oriented Object Notation - A compact, human-readable encoding of JSON for LLM prompts with 30-60% token savings",
   "main": "dist/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
-  "bin": {
-    "toon": "dist/cli.js"
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js"
+    }
   },
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "node scripts/build.js",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationMap",
     "watch": "tsc --watch",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:run": "npm run build && node dist/test.js",
+    "test": "echo \"Error: No tests yet exists\"&& exit 1",
+    "test:local": "npm run build && node test-local.mjs && node test-local.cjs",
     "prepublishOnly": "npm run build",
     "clean": "rm -rf dist"
   },
@@ -34,13 +38,11 @@
     "prompt",
     "efficient"
   ],
-  "author": "",
+  "author": "mhriyad",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^29.5.11",
     "@types/node": "^20.10.5",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.1",
+    "esbuild": "^0.27.0",
     "typescript": "^5.3.3"
   },
   "repository": {

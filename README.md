@@ -6,12 +6,11 @@ TOON is a lossless serialization format designed to reduce token usage when send
 
 ## Features
 
-- ✅ **Lossless encoding**: Perfect round-trip conversion (`decode(encode(obj)) === obj`)
+- ✅ **Lossless encoding**: Perfect round-trip conversion (`deserialize(serialize(obj)) === obj`)
 - ✅ **30-60% token savings** compared to JSON for LLM prompts
 - ✅ **Tabular arrays**: Efficient representation for uniform arrays of objects
 - ✅ **Indentation-based**: Human-readable format similar to YAML
 - ✅ **TypeScript support**: Full type definitions included
-- ✅ **CLI tool**: Command-line interface for encoding/decoding files
 - ✅ **Token counting**: Built-in utilities to measure token savings
 - ✅ **Zero dependencies**: Lightweight and fast
 - ✅ **Browser & Node.js**: Works in both environments
@@ -19,7 +18,7 @@ TOON is a lossless serialization format designed to reduce token usage when send
 ## Installation
 
 ```bash
-npm install toon-package
+npm install @mhriyad/toon
 ```
 
 ## Quick Start
@@ -27,9 +26,9 @@ npm install toon-package
 ### Programmatic Usage
 
 ```typescript
-import { encode, decode, countTokens } from 'toon-package';
+import { serialize, deserialize, countTokens } from '@mhriyad/toon';
 
-// Encode JSON to TOON
+// Serialize JSON to TOON
 const json = {
   users: [
     { name: "Alice", age: 30, city: "New York" },
@@ -38,7 +37,7 @@ const json = {
   ]
 };
 
-const toon = encode(json);
+const toon = serialize(json);
 console.log(toon);
 // Output:
 // [3]
@@ -62,8 +61,8 @@ console.log(toon);
 //   Bob,25,San Francisco
 //   Charlie,35,Seattle
 
-// Decode TOON back to JSON
-const decoded = decode(toon);
+// Deserialize TOON back to JSON
+const decoded = deserialize(toon);
 console.log(JSON.stringify(decoded, null, 2));
 
 // Calculate token savings
@@ -72,35 +71,9 @@ const stats = countTokens(toon, jsonStr);
 console.log(`Saved ${stats.savings.tokensPercent.toFixed(1)}% tokens!`);
 ```
 
-### CLI Usage
-
-```bash
-# Encode JSON file to TOON
-toon encode data.json
-
-# Encode with output file
-toon encode data.json --output data.toon
-
-# Show token savings statistics
-toon encode data.json --stats
-
-# Decode TOON back to JSON
-toon decode data.toon
-
-# Decode with output file
-toon decode data.toon --output data.json
-
-# Use custom delimiter for tabular arrays
-toon encode data.json --delimiter tab
-
-# Pipe input/output
-cat data.json | toon encode
-cat data.toon | toon decode
-```
-
 ## API Reference
 
-### `encode(obj: any, options?: EncodeOptions): string`
+### `serialize(obj: any, options?: EncodeOptions): string`
 
 Converts a JavaScript object to TOON format.
 
@@ -112,13 +85,13 @@ Converts a JavaScript object to TOON format.
 
 **Example:**
 ```typescript
-import { encode } from 'toon-package';
+import { serialize } from '@mhriyad/toon';
 
 const obj = { name: "John", age: 30 };
-const toon = encode(obj, { pretty: true });
+const toon = serialize(obj, { pretty: true });
 ```
 
-### `decode(toonStr: string, options?: DecodeOptions): any`
+### `deserialize(toonStr: string, options?: DecodeOptions): any`
 
 Parses a TOON format string into a JavaScript object.
 
@@ -127,10 +100,10 @@ Parses a TOON format string into a JavaScript object.
 
 **Example:**
 ```typescript
-import { decode } from 'toon-package';
+import { deserialize } from '@mhriyad/toon';
 
 const toon = '[2]\n  name,age\n  Alice,30\n  Bob,25';
-const obj = decode(toon);
+const obj = deserialize(toon);
 ```
 
 ### `countTokens(toonStr: string, jsonStr: string, tokenizer?: Tokenizer): TokenStats`
@@ -155,7 +128,7 @@ interface TokenStats {
 
 **Example:**
 ```typescript
-import { countTokens } from 'toon-package';
+import { countTokens } from '@mhriyad/toon';
 
 const stats = countTokens(toonStr, jsonStr);
 console.log(`Token savings: ${stats.savings.tokensPercent.toFixed(1)}%`);
@@ -309,23 +282,23 @@ For structures with many repeated keys, TOON's tabular format provides significa
 ## Error Handling
 
 ```typescript
-import { encode, decode, EncodeError, DecodeError } from 'toon-package';
+import { serialize, deserialize, SerializeError, DeserializeError } from '@mhriyad/toon';
 
 try {
   const obj = { circular: {} };
   obj.circular = obj; // Circular reference
-  encode(obj); // Throws EncodeError
+  serialize(obj); // Throws SerializeError
 } catch (error) {
-  if (error instanceof EncodeError) {
-    console.error('Encoding error:', error.message);
+  if (error instanceof SerializeError) {
+    console.error('Serialization error:', error.message);
   }
 }
 
 try {
-  decode('invalid toon'); // Throws DecodeError
+  deserialize('invalid toon'); // Throws DeserializeError
 } catch (error) {
-  if (error instanceof DecodeError) {
-    console.error('Decoding error:', error.message);
+  if (error instanceof DeserializeError) {
+    console.error('Deserialization error:', error.message);
   }
 }
 ```
@@ -341,7 +314,7 @@ import type {
   TokenStats,
   Delimiter,
   Tokenizer
-} from 'toon-package';
+} from '@mhriyad/toon';
 ```
 
 ## Development
