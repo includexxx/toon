@@ -19,6 +19,8 @@ TOON is a lossless serialization format designed to reduce token usage when send
 
 ```bash
 npm install @mhriyad/toon
+yarn add @mhriyad/toon
+pnpm add @mhriyad/toon
 ```
 
 ## Quick Start
