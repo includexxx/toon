@@ -5,7 +5,7 @@
 
 const { serialize, deserialize, countTokens } = require('./dist/index.js');
 
-console.log('🧪 Testing @mhriyad/toon package (CommonJS)\n');
+console.log('🧪 Testing @mhriyad/toon-package package (CommonJS)\n');
 
 // Test 1: Basic serialization
 console.log('Test 1: Basic serialization');

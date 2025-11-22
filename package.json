@@ -1,10 +1,11 @@
 {
-  "name": "@mhriyad/toon",
+  "name": "@mhriyad/toon-package",
   "version": "1.0.0",
   "description": "Token-Oriented Object Notation - A compact, human-readable encoding of JSON for LLM prompts with 30-60% token savings",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

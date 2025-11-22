@@ -5,7 +5,7 @@
 
 import { serialize, deserialize, countTokens } from './dist/esm/index.js';
 
-console.log('🧪 Testing @mhriyad/toon package\n');
+console.log('🧪 Testing @mhriyad/toon-package package\n');
 
 // Test 1: Basic serialization
 console.log('Test 1: Basic serialization');

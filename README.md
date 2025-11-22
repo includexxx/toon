@@ -18,9 +18,9 @@ TOON is a lossless serialization format designed to reduce token usage when send
 ## Installation
 
 ```bash
-npm install @mhriyad/toon
-yarn add @mhriyad/toon
-pnpm add @mhriyad/toon
+npm install @mhriyad/toon-package
+yarn add @mhriyad/toon-package
+pnpm add @mhriyad/toon-package
 ```
 
 ## Quick Start
@@ -28,7 +28,7 @@ pnpm add @mhriyad/toon
 ### Programmatic Usage
 
 ```typescript
-import { serialize, deserialize, countTokens } from '@mhriyad/toon';
+import { serialize, deserialize, countTokens } from '@mhriyad/toon-package';
 
 // Serialize JSON to TOON
 const json = {
@@ -87,7 +87,7 @@ Converts a JavaScript object to TOON format.
 
 **Example:**
 ```typescript
-import { serialize } from '@mhriyad/toon';
+import { serialize } from '@mhriyad/toon-package';
 
 const obj = { name: "John", age: 30 };
 const toon = serialize(obj, { pretty: true });
@@ -102,7 +102,7 @@ Parses a TOON format string into a JavaScript object.
 
 **Example:**
 ```typescript
-import { deserialize } from '@mhriyad/toon';
+import { deserialize } from '@mhriyad/toon-package';
 
 const toon = '[2]\n  name,age\n  Alice,30\n  Bob,25';
 const obj = deserialize(toon);
@@ -130,7 +130,7 @@ interface TokenStats {
 
 **Example:**
 ```typescript
-import { countTokens } from '@mhriyad/toon';
+import { countTokens } from '@mhriyad/toon-package';
 
 const stats = countTokens(toonStr, jsonStr);
 console.log(`Token savings: ${stats.savings.tokensPercent.toFixed(1)}%`);
@@ -284,7 +284,7 @@ For structures with many repeated keys, TOON's tabular format provides significa
 ## Error Handling
 
 ```typescript
-import { serialize, deserialize, SerializeError, DeserializeError } from '@mhriyad/toon';
+import { serialize, deserialize, SerializeError, DeserializeError } from '@mhriyad/toon-package';
 
 try {
   const obj = { circular: {} };
@@ -316,7 +316,7 @@ import type {
   TokenStats,
   Delimiter,
   Tokenizer
-} from '@mhriyad/toon';
+} from '@mhriyad/toon-package';
 ```
 
 ## Development
